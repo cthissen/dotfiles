@@ -1,4 +1,3 @@
-
 " Set standard file encoding
 set encoding=utf8
 " No special per file vim override condifs
@@ -76,6 +75,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
 Plug 'w0rp/ale'
 " efficient moving 
 Plug 'justinmk/vim-sneak'
+" add pane navigation 
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 
@@ -116,6 +117,9 @@ xmap f <Plug>Sneak_f
 xmap F <Plug>Sneak_F
 omap f <Plug>Sneak_f
 omap F <Plug>Sneak_F
+
+" remap jk to <Esc>
+:imap jk <Esc>
 
 
 

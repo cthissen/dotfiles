@@ -2,7 +2,25 @@
 autoload colors zsh/terminfo
 colors
 
-# minimal prompt 
+
+
+
+ #minimal prompt 
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+source /usr/local/bin/virtualenvwrapper.sh
+
+
+plugins=(git osx extract Z) 
+export ZSH=/Users/christhissen/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+ #minimal prompt
 # left is right arrow char 
 # right current path 
 precmd() { print "" }
