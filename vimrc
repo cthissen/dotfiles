@@ -77,6 +77,8 @@ Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
 " add pane navigation 
 Plug 'christoomey/vim-tmux-navigator'
+" python code folding 
+Plug 'tmhedberg/simplyfold'
 call plug#end()
 
 
@@ -121,7 +123,13 @@ omap F <Plug>Sneak_F
 " remap jk to <Esc>
 :imap jk <Esc>
 
+" try to fix split navigation 
+let g:tmux_navigator_no_mappings = 1
 
-
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
 
