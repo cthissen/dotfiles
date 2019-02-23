@@ -1,0 +1,71 @@
+# fix copy to global keyboard
+set -g default-shell $SHELL
+#set -g default-command 'reattach-to-user-namespace -l ${SHELL}'
+
+# tabs
+set -g status-position top
+set -g base-index 1
+set -g pane-base-index 1
+set -g renumber-windows on
+#
+# cjt additions
+# allow mouse scrolling?
+set -g mode-mouse on
+# allow mouse to select pane focus
+# set -g mouse-select-pane on
+# allow mouse dragging to resize panes
+# set -g mouse-resize-pane on
+# allow mouse to select window
+# set -g mouse-select-window on
+
+# /cjt additions
+
+# ctrl t to open new tab
+# crtl T to open new tab in same directory
+# ctrl w to close pane (and tab if only one page)
+bind-key -n C-t new-window
+bind-key -n C-T new-window -c "#{pane_current_path}"
+bind-key -n C-w kill-pane
+
+# create panes, a single tab can be split into multiple panes
+#    Ctrl b \ to open new vertical split
+#    Ctrl b | to open new vertical split in current directory
+#    Ctrl b - to open new horizontal split
+#    Ctrl b _ to open new horizontal split in current directory
+
+bind \ split-window -h
+bind | split-window -h -c '#{pane-current_path}'
+bind - split-window
+bind _ split_window -c '#{pane_current_path}'
+
+# vim-tmux-navigator
+# Smart pane switching with awareness of Vim splits.
+# See: https://github.com/christoomey/vim-tmux-navigator
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+bind-key -n C-h if-shell "$is_vim" "send-keys C-h"  "select-pane -L"
+bind-key -n C-j if-shell "$is_vim" "send-keys C-j"  "select-pane -D"
+bind-key -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
+bind-key -n C-l if-shell "$is_vim" "send-keys C-l"  "select-pane -R"
+bind-key -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
+bind-key -T copy-mode-vi C-h select-pane -L
+bind-key -T copy-mode-vi C-j select-pane -D
+bind-key -T copy-mode-vi C-k select-pane -U
+bind-key -T copy-mode-vi C-l select-pane -R
+bind-key -T copy-mode-vi C-\ select-pane -l
+
+
+
+set -g @plugin 'tmux-plugins/tpm'
+# PLUGINS GO HERE!!!
+# fix color rendering, removes escape delay, configures utf8
+#set -g @plugin 'tmux-plugins/tmux-sensible
+# ctrl h,j,k,l to switch splits :wq
+#set -g @plugin 'christoomey/vim-tmux-navigator'
+# theme powerline yellow
+set -g @themepack 'block/yellow'
+set -g @plugin 'jimeh/tmux-themepack'
+#run '~/dotfiles/tpm/tpm'
+run -b '~/.tmux/plugins/tpm/tpm'
+
+run-shell '~/.tmux/plugins/tmux-sensible/sensible.tmux'
