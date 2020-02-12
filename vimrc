@@ -26,6 +26,16 @@ set hlsearch
 set scrolloff=1 
 set sidescrolloff=5
 
+" show quotes in json 
+set conceallevel=0
+
+" set color at max width (black defaults to 88)
+set colorcolumn=100
+
+" width for reflow text (I like 80 best) 
+"set textwidth=80  
+"set nowrap  " but don't automatically wrap the lines
+
 """ opinionated defaults 
 let mapleader="\<SPACE>"
 " disable mouse support
@@ -78,8 +88,17 @@ Plug 'justinmk/vim-sneak'
 " add pane navigation 
 Plug 'christoomey/vim-tmux-navigator'
 " python code folding 
-Plug 'tmhedberg/simplyfold'
+"Plug 'tmhedberg/simplyfold'
+Plug 'https://github.com/tmhedberg/SimpylFold.git'
+" ctags for vim
+Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
 call plug#end()
+
+let g:SimpylFold_docstring_preview=1
+let g:SimpylFold_fold_docstring=1
+let g:SimpylFold_fold_import=1
+"nnoremap <space> za
+"vnoremap <space> zf
 
 
 color Dracula 
